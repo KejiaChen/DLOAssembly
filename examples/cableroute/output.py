@@ -1,3 +1,4 @@
+"""
 Strategy:
 1. The robot will first move the cable downwards until it feels a resistance. This resistance will indicate that the cable has hit the surface of the tunnel.
 2. Once the cable has hit the surface, the robot will move the cable horizontally (left and right) to search for the opening of the tunnel. The robot will know it has found the opening when it no longer feels a resistance in the downward direction.
@@ -5,6 +6,7 @@ Strategy:
 4. The robot will then move the cable upwards to unroute it from the tunnel.
 
 Here is the program using the APIs above:
+"""
 
 ```python
 # Step 1: Move the cable downwards until it hits the surface of the tunnel
