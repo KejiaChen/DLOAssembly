@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Generating Robot Policy Code for High-Precision and Contact-Rich Manipulation Tasks</title>
+
+    <meta name="description" content="Dextrous Code as Policies: Generating Robot Policy Code for High-Precision and Contact-Rich Manipulation Tasks">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app_anon.js"></script>
+	
+    <style>
+        .nav-pills {
+          position: relative;
+          display: inline;
+        }
+        .imtip {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="row mt-4">
+            <h2 class="col-md-12 text-center">
+                <b><font size="+6">Dextrous Code Generation</font></b>: </br> Generating Robot Policy Code for High-Precision and Contact-Rich Manipulation Tasks </br> 
+            </h2>
+        </div>
+        
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <video id="v0" width="100%" preload="metadata" playsinline muted loop autoplay>
+                    <source src="examples/cableroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 col-lg-8">
+                <h3 class="mt-4 mb-2">
+                    Abstract
+                </h3>
+                <p class="text-justify">
+Large Language Models (LLMs) have been successful at generating robot policy code, but so far these results have been limited to high-level tasks that do not require accurate movement.
+It is an open question how well such approaches can work for high-precision, contact-rich tasks that require controlling contact forces with the environment.
+We find that, with the right action space, LLMs are capable of successfully generating policies for a variety of contact-rich and high-precision manipulation tasks in a zero-shot fashion.
+Specifically, we reparameterize the action space to include robot compliance with constraints on the interaction forces and stiffnesses involved in reaching a target pose.
+We validate this approach on subtasks derived from the Functional Manipulation Benchmark (FMB) and the IROS 2020 Robotic Grasping
+and Manipulation Competition, where zero-shot policy generation in this action space improves success rates by greater than 3x and 4x, respectively, over a baseline that uses free space motions.
+To further investigate properties that make language models well posed to generate contact-rich tasks, we also analyse language models ability to complete control-relevant arithmetic reasoning tasks over continuous numbers in-context and ablate the importance of different prompt components in generating relevant motion patterns.
+                </p>
+                <p style="text-align:center;">
+                    <image src="imgs/concept.svg" width="100%">
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center mt-4">
+            <div class="col-md-10 col-lg-8">
+                <h3>Experiments</h3>
+                <p>Here is a showcase of the experiments we ran.</p>
+
+                <!--
+                <p>explanation 2</p>
+                -->
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Circle</h5>
+                    <div class="card-body">
+                        <div class="col-md-12 mb-2">
+                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
+                                <source src="examples/circle/conditional_compliant_zero_shot_success.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Star</h5>
+                    <div class="card-body">
+                        <div class="col-md-12 mb-2">
+                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
+                                <source src="examples/star/conditional_compliant_zero_shot_success.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Half-Pipe</h5>
+                    <div class="card-body">
+                        <div class="col-md-12 mb-2">
+                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
+                                <source src="examples/halfpipe/conditional_compliant_few_shot_success.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Cable routing</h5>
+                    <div class="card-body">
+                        <div class="col-md-12 mb-2">
+                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
+                                <source src="examples/cableroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Cable un-routing</h5>
+                    <div class="card-body">
+                        <p>Prompt</p>
+                        <div class="row">
+                            <div class="col-md-12" id="example"
+                                 data-path="examples/cableunroute/prompt.py">
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
+                                <source src="examples/cableunroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <p>Generated code</p>
+                        <div class="row">
+                            <div class="col-md-12" id="example"
+                                 data-path="examples/cableunroute/output.py">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
