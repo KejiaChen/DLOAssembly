@@ -59,13 +59,7 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-Large Language Models (LLMs) have been successful at generating robot policy code, but so far these results have been limited to high-level tasks that do not require accurate movement.
-It is an open question how well such approaches can work for high-precision, contact-rich tasks that require controlling contact forces with the environment.
-We find that, with the right action space, LLMs are capable of successfully generating policies for a variety of contact-rich and high-precision manipulation tasks in a zero-shot fashion.
-Specifically, we reparameterize the action space to include robot compliance with constraints on the interaction forces and stiffnesses involved in reaching a target pose.
-We validate this approach on subtasks derived from the Functional Manipulation Benchmark (FMB) and the IROS 2020 Robotic Grasping
-and Manipulation Competition, where zero-shot policy generation in this action space improves success rates by greater than 3x and 4x, respectively, over a baseline that uses free space motions.
-To further investigate properties that make language models well posed to generate contact-rich tasks, we also analyse language models ability to complete control-relevant arithmetic reasoning tasks over continuous numbers in-context and ablate the importance of different prompt components in generating relevant motion patterns.
+Large Language Models (LLMs) have been successful at generating robot policy code, but so far these results have been limited to high-level tasks that do not require accurate movement. It is an open question how well such approaches work for tasks that require reasoning over contacts forces and working within tight success tolerances. We find that, with the right action space, LLMs are capable of successfully generating policies for a variety of contact-rich and high-precision manipulation tasks. Specifically, we reparameterize the action space to include compliance with constraints on the interaction forces and stiffnesses involved in reaching a target pose. We validate this approach on subtasks derived from the Functional Manipulation Benchmark (FMB) and NIST Task Board Benchmarks, where policy generation with an LLM in this action space improves success rates over generation in non-compliant action spaces by greater than 3x and 4x, respectively.
                 </p>
                 <p style="text-align:center;">
                     <image src="imgs/concept.svg" width="100%">
@@ -83,14 +77,22 @@ To further investigate properties that make language models well posed to genera
                 -->
 
                 <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Circle</h5>
+                    <h5 class="card-header">Functional Manipulation Benchmark Prompt</h5>
                     <div class="card-body">
-			<p>Prompt</p>
                         <div class="row">
                             <div class="col-md-12" id="example"
-                                 data-path="examples/circle/prompt.py">
+                                 data-path="examples/fmb_prompt.py">
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Circle</h5>
+                    <div class="card-body">
+                        <p>
+				"Explain how to insert a circle-shaped peg into a circle-shaped hole with a grid pattern search. Then, generate the code to insert a circle-shaped peg."
+                        </p>
                         <div class="col-md-12 mb-2">
                             <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
                                 <source src="examples/circle/conditional_compliant_zero_shot_success.mp4" type="video/mp4">
@@ -108,12 +110,7 @@ To further investigate properties that make language models well posed to genera
                 <div class="card mb-4 mt-4 text-dark bg-light">
                     <h5 class="card-header">Star</h5>
                     <div class="card-body">
-			<p>Prompt</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/star/prompt.py">
-                            </div>
-                        </div>
+			<p>"Explain how to insert a star-shaped peg into a star-shaped hole is different than a circle-shaped peg with a grid pattern search. Then, generate the code to insert a star-shaped peg."</p>
                         <div class="col-md-12 mb-2">
                             <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
                                 <source src="examples/star/conditional_compliant_zero_shot_success.mp4" type="video/mp4">
@@ -131,11 +128,7 @@ To further investigate properties that make language models well posed to genera
                 <div class="card mb-4 mt-4 text-dark bg-light">
                     <h5 class="card-header">Half-Pipe</h5>
                     <div class="card-body">
-			<div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/halfpipe/prompt.py">
-                            </div>
-                        </div>
+			<p>"Explain how to insert a half-pipe-shaped peg into a half-pipe-shaped hole is different than a circle-shaped peg with a grid pattern search. Then, generate the code to insert a half-pipe-shaped peg."</p>
                         <div class="col-md-12 mb-2">
                             <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
                                 <source src="examples/halfpipe/conditional_compliant_few_shot_success.mp4" type="video/mp4">
@@ -150,15 +143,24 @@ To further investigate properties that make language models well posed to genera
                     </div>
                 </div>
 
+
                 <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Cable routing</h5>
+                    <h5 class="card-header">Assembly Prompt</h5>
                     <div class="card-body">
-			<p>Prompt</p>
                         <div class="row">
                             <div class="col-md-12" id="example"
-                                 data-path="examples/cableunroute/prompt.py">
+                                 data-path="examples/assembly_prompt.py">
                             </div>
                         </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card mb-4 mt-4 text-dark bg-light">
+                    <h5 class="card-header">Cable routing</h5>
+	    <div class="card-body">
+		<p>Currently the robot is holding the cable at pose(1), but the cable is above a tunnel with a small opening at the top. Describe a strategy to search for an opening and insert the cable using force information and then write a program using the APIs above to route the cable into the tunnel.</p>
                         <div class="col-md-12 mb-2">
                             <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
                                 <source src="examples/cableroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
@@ -176,12 +178,7 @@ To further investigate properties that make language models well posed to genera
                 <div class="card mb-4 mt-4 text-dark bg-light">
                     <h5 class="card-header">Cable un-routing</h5>
                     <div class="card-body">
-                        <p>Prompt</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/cableunroute/prompt.py">
-                            </div>
-                        </div>
+                        <p>"Currently the robot is holding the cable at pose(1), but the cable is stuck in a tunnel with a small opening at the top. Describe a strategy for unrouting the cable using force information to search for the opening and then write a program using the APIs above to unroute the cable and lift it out of the tunnel."</p>
                         <div class="col-md-12 mb-2">
                             <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
                                 <source src="examples/cableunroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
@@ -197,9 +194,9 @@ To further investigate properties that make language models well posed to genera
                 </div>
 
 		<div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Connector insertion (modified)</h5>
+                    <h5 class="card-header">Connector insertion</h5>
                     <div class="card-body">
-                        <p>Prompt</p>
+                        <p>"Now assume the robot is holding a waterproof connector above a port. Use the above methods to perform a grid pattern search insertion. Then rewrite it to remove any ifs or while loops."</p>
                         <div class="row">
                             <div class="col-md-12" id="example"
                                  data-path="examples/connector/prompt.py">
