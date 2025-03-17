@@ -1,248 +1,330 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <title>Generating Robot Policy Code for High-Precision and Contact-Rich Manipulation Tasks</title>
-
-    <meta name="description" content="Dextrous Code as Policies: Generating Robot Policy Code for High-Precision and Contact-Rich Manipulation Tasks">
+    <title>Multi-Robot Assembly of Deformable Linear Objects Using Multi-Modal Perception</title>
+    <meta name="description" content="Multi-Robot Assembly of Deformable Linear Objects Using Multi-Modal Perception">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <base href="/"> -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/app.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
-    
-    <script src="js/app_anon.js"></script>
-	
     <style>
-        .nav-pills {
-          position: relative;
-          display: inline;
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
         }
-        .imtip {
-          position: absolute;
-          top: 0;
-          left: 0;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .video-card video {
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        .img-fluid {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
+
 <body>
-    <div class="container" id="main">
-        <div class="row mt-4">
-            <h2 class="col-md-12 text-center">
-                <b><font size="+6">Dextrous Code Generation</font></b>: </br> Generating Robot Policy Code for High-Precision and Contact-Rich Manipulation Tasks </br> 
-            </h2>
-        </div>
-        
+<div class="container" id="main">
+    <div class="row mt-4">
+        <h2 class="col-md-12 text-center">
+            <b>Multi-Robot Assembly of Deformable Linear Objects Using Multi-Modal Perception</b>
+        </h2>
+    </div>
 
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <video id="v0" width="100%" preload="metadata" playsinline muted loop autoplay>
-                    <source src="examples/genchip_verycompressed.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
+    <div class="text-center mt-4">
+        <a href="https://arxiv.org/" target="_blank" class="btn btn-primary" rel="noopener noreferrer">
+            <i class="fas fa-file-pdf"></i> View on arXiv
+        </a>
+    </div>
 
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <video id="v0" width="100%" preload="metadata" playsinline muted loop autoplay class="rounded shadow">
+                <source src="examples/iros2025_with_audio.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="container-fluid">
         <div class="row justify-content-md-center">
-            <div class="col-md-10 col-lg-8">
-                <h3 class="mt-4 mb-2">
-                    Abstract
-                </h3>
+            <div class="col-12">
+                <h3 class="mt-4 mb-2">Abstract</h3>
                 <p class="text-justify">
-Large Language Models (LLMs) have been successful at generating robot policy code, but so far these results have been limited to high-level tasks that do not require accurate movement. It is an open question how well such approaches work for tasks that require reasoning over contacts forces and working within tight success tolerances. We find that, with the right action space, LLMs are capable of successfully generating policies for a variety of contact-rich and high-precision manipulation tasks. Specifically, we reparameterize the action space to include compliance with constraints on the interaction forces and stiffnesses involved in reaching a target pose. We validate this approach on subtasks derived from the Functional Manipulation Benchmark (FMB) and NIST Task Board Benchmarks, where policy generation with an LLM in this action space improves success rates over generation in non-compliant action spaces by greater than 3x and 4x, respectively.
+                    Industrial assembly of deformable linear objects (DLOs) such as cables offers great potential for many industries.
+                    However, DLOs pose several challenges for robot-based automation due to the inherent complexity of deformation and, consequentially, the difficulties in anticipating the behavior of DLOs in dynamic situations.
+                    Although existing studies have addressed isolated subproblems like shape tracking, grasping, and shape control, there has been limited exploration of integrated workflows that combine these individual processes.
+
+                    To address this gap, we propose an object-centric perception and planning framework to achieve a comprehensive DLO assembly process throughout the industrial value chain.
+                    The framework utilizes visual and tactile information to track the DLO's shape as well as contact state across different stages, which facilitates effective planning of robot actions.
+                    Our approach encompasses robot-based bin picking of DLOs from cluttered environments, followed by a coordinated handover to two additional robots that mount the DLOs onto designated fixtures.
+                    Real-world experiments employing a setup with multiple robots demonstrate the effectiveness of the approach and its relevance to industrial scenarios
                 </p>
-                <p style="text-align:center;">
-                    <image src="imgs/concept.svg" width="100%">
+                <p class="text-center">
+                    <img src="imgs/moti.png" class="img-fluid" alt="motivation">
                 </p>
-            </div>
-        </div>
-
-        <div class="row justify-content-md-center mt-4">
-            <div class="col-md-10 col-lg-8">
-                <h3>Experiments</h3>
-                <p>Here is a showcase of the experiments we ran.</p>
-
-                <!--
-                <p>explanation 2</p>
-                -->
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Functional Manipulation Benchmark Prompt</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/fmb_prompt.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Circle</h5>
-                    <div class="card-body">
-                        <p>
-				"Explain how to insert a circle-shaped peg into a circle-shaped hole with a grid pattern search. Then, generate the code to insert a circle-shaped peg."
-                        </p>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/circle/conditional_compliant_zero_shot_success.mp4" type="video/mp4">
-                            </video>
-                        </div>
-			<p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/circle/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Star</h5>
-                    <div class="card-body">
-			<p>"Explain how to insert a star-shaped peg into a star-shaped hole is different than a circle-shaped peg with a grid pattern search. Then, generate the code to insert a star-shaped peg."</p>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/star/conditional_compliant_zero_shot_success.mp4" type="video/mp4">
-                            </video>
-                        </div>
-			<p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/star/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Half-Pipe</h5>
-                    <div class="card-body">
-			<p>"Explain how to insert a half-pipe-shaped peg into a half-pipe-shaped hole is different than a circle-shaped peg with a grid pattern search. Then, generate the code to insert a half-pipe-shaped peg."</p>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/halfpipe/conditional_compliant_few_shot_success.mp4" type="video/mp4">
-                            </video>
-                        </div>
-			<p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/halfpipe/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Assembly Prompt</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/assembly_prompt.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Cable routing</h5>
-	    <div class="card-body">
-		<p>Currently the robot is holding the cable at pose(1), but the cable is above a tunnel with a small opening at the top. Describe a strategy to search for an opening and insert the cable using force information and then write a program using the APIs above to route the cable into the tunnel.</p>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/cableroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
-                            </video>
-                        </div>
-			<p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/cableroute/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Cable un-routing</h5>
-                    <div class="card-body">
-                        <p>"Currently the robot is holding the cable at pose(1), but the cable is stuck in a tunnel with a small opening at the top. Describe a strategy for unrouting the cable using force information to search for the opening and then write a program using the APIs above to unroute the cable and lift it out of the tunnel."</p>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/cableunroute/conditional_compliant_few_shot_success.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/cableunroute/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-		<div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Connector insertion</h5>
-                    <div class="card-body">
-                        <p>"Now assume the robot is holding a waterproof connector above a port. Use the above methods to perform a grid pattern search insertion. Then rewrite it to remove any ifs or while loops."</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/connector/prompt.py">
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/connector/connector_conditional_compliant.mov" type="video/mp4">
-                            </video>
-                        </div>
-                        <p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/connector/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-		<div class="card mb-4 mt-4 text-dark bg-light">
-                    <h5 class="card-header">Cable unravel</h5>
-                    <div class="card-body">
-                        <p>Prompt</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/unravel/prompt.py">
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-2">
-                            <video id="vid_blocks" width="100%" preload="metadata" playsinline controls>
-                                <source src="examples/unravel/conditional_compliant_unravel.mov" type="video/mp4">
-                            </video>
-                        </div>
-                        <p>Generated code</p>
-                        <div class="row">
-                            <div class="col-md-12" id="example"
-                                 data-path="examples/unravel/output.py">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script>hljs.highlightAll();</script>
+    </br>
+    </br>
+    </br>
+    <div class="text-center mb-4">
+        <h1 class="section-title">Singulation (Bin picking)</h1>
+        <p>Bin picking is performed on a densely packed set of DLOs, which requires instance segmentation and handling of possible entanglements.</p>
+        <img src="imgs/binpicking.png" class="img-fluid" alt="Bin picking">
+    </div>
+
+    </br>
+    </br>
+
+    <div class="row mt-4">
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h3 class="text-center">a) Local Visual Perception in Cluttered Scenes</h3>
+                <p>The captured image is segmented by the foundation model SAM2[7] to obtain the shape of the DLOs on the top layer, and then select an appropriate grasping point.</p>
+            </div>
+        </div>
+        <!-- 视频部分 -->
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <video id="videoA1" width="100%" playsinline muted loop autoplay class="rounded shadow">
+                    <source src="videos/bin_a_1.mp4" type="video/mp4">
+                </video>
+                <video id="videoA2" width="100%" playsinline muted loop autoplay class="rounded shadow mt-3">
+                    <source src="videos/bin_a_2.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+    </br>
+
+    <div class="row mt-4">
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h3 class="text-center">b) State-Machine for Motion Planning</h3>
+                <p>To handle possible entanglements, the motion is planned based on the contact status from force/torque sensor. A state-machine approach is deployed to detect grasping errors and react to them accordingly.</p>
+            </div>
+        </div>
+        <!-- 视频部分 -->
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <video id="videoB1" width="100%" playsinline muted loop autoplay class="rounded shadow">
+                    <source src="videos/bin_b_1.mp4" type="video/mp4">
+                </video>
+                <video id="videoB2" width="100%" playsinline muted loop autoplay class="rounded shadow">
+                    <source src="videos/bin_B_2.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+
+    </br>
+
+    <div class="row mt-4">
+        <div class="col-md-6 d-flex align-items-center">
+            <div>
+                <h3 class="subsection-title">Bin picking Experiment Results</h3>
+                <p>The bin-picking experiment involves removing 31 high-voltage cables from a load carrier. The system demonstrates its reliability with an average success rate of 89.7%.</p>
+                <img src="imgs/binpicking_result.png" class="img-fluid rounded shadow" alt="Results of bin picking experiments">
+                <p class="mt-2 text-muted">Successful: the DLO is isolated from the pile and placed on the table.</p>
+            </div>
+        </div>
+        <!-- 视频部分 -->
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <video id="Bin picking result video" width="100%" playsinline muted loop autoplay class="rounded shadow">
+                    <source src="videos/binpicking_result.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    </br>
+    </br>
+    </br>
+
+    <!-- Tracking and Handover Section -->
+    <div class="text-center mb-4">
+        <h1 class="section-title">Tracking and Handover</h1>
+        <p>To monitor DLO’s 3D shape during the handover stage, the global shape estimated from RGB-D camera views are corrected by the grasping position obtained from ViTac sensing as well as proprioceptive information. The resulting 3D shape is later used to plan the grasping motion.</p>
+        <img src="imgs/tracking&handover.png" class="img-fluid rounded shadow" alt="Tracking and Handover">
+    </div>
+
+    </br>
+
+    <div class="row mt-4">
+        <!-- Tracking Correction -->
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <h3 class="text-center">Tracking Correction</h3>
+                <p>We compare the reconstructed shape with and without local correction. Across 10 trials, each consisting of 40 frames, the average adjustment from local correction with ViTac and proprioceptive information is 2.34 cm.</p>
+                <video id="videoT1" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                    <source src="videos/tracking.mp4" type="video/mp4">
+                </video>
+<!--                <video id="videoT2" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">-->
+<!--                    <source src="videos/track_wo_occ2.mp4" type="video/mp4">-->
+<!--                </video>-->
+<!--                <video id="videoT3" width="100%" playsinline muted loop autoplay class="rounded shadow">-->
+<!--                    <source src="videos/track_w_occ.mp4" type="video/mp4">-->
+<!--                </video>-->
+            </div>
+        </div>
+
+        <!-- Handover -->
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <h3 class="text-center">Handover</h3>
+                <p>We run handover experiments for 32 trials across 4 different configurations, and record the gap between the resulting grasping point and the robot’s TCP.</p>
+                <table>
+                    <tr>
+                        <td style="width: 20%; text-align: center">
+                            Grasping </br>distance
+                        </td>
+                        <td style="width: 40%; text-align: center">
+                            Ours
+                        </td>
+                        <td td style="width: 40%; text-align: center">
+                            Vision only
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            L<sub>g</sub> = 8 <i>cm</i>
+                        </td>
+                        <td>
+                            <video id="videoH1" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                                <source src="videos/handovero1.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video id="videoH2" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                                <source src="videos/handoverv1.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            L<sub>g</sub> = 12 <i>cm</i>
+                        </td>
+                        <td>
+                            <video id="videoH3" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                                <source src="videos/handovero2.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video id="videoH4" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                                <source src="videos/handoverv2.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            L<sub>g</sub> = 15 <i>cm</i>
+                        </td>
+                        <td>
+                            <video id="videoH5" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                                <source src="videos/handovero3.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                        <td>
+                            <video id="videoH6" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                                <source src="videos/handoverv3.mp4" type="video/mp4">
+                            </video>
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center">
+                    <img src="imgs/handover.png" class="img-fluid rounded shadow" alt="Handover">
+                </div>
+                <p class="mt-2 text-muted">Local correction reduces the average grasping gap by 1.54 cm, and remarkably increases the handover success rate from 6.5% to 81.25%.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</br>
+</br>
+</br>
+<div class="text-center mb-4">
+    <h1 class="section-title">Full Assembly Process</h1>
+    <p>Finally, we validate our framework within a real-world, comprehensive assembly process, where multiple robots collaboratively pick a target DLO, transport it to the mounting workspace and mount it on fixtures.
+    </p>
+    <table>
+        <td>
+            <video id="videoS1" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                <source src="videos/assembly.mp4" type="video/mp4">
+            </video>
+        </td>
+    </table>
+
+</div>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        const videoGroupA = [document.getElementById("videoA1"), document.getElementById("videoA2")];-->
+<!--        const videoGroupB = [document.getElementById("videoB1"), document.getElementById("videoB2")];-->
+<!--        const videoGroupH = [document.getElementById("videoH1"), document.getElementById("videoH2"), document.getElementById("videoH3"),-->
+<!--            document.getElementById("videoH4"), document.getElementById("videoH5"), document.getElementById("videoH6")];-->
+
+<!--        function syncVideos(group, action) {-->
+<!--            group.forEach(video => {-->
+<!--                if (action === "play") {-->
+<!--                    video.play();-->
+<!--                } else if (action === "pause") {-->
+<!--                    video.pause();-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+
+<!--        videoGroupA.forEach(video => {-->
+<!--            video.addEventListener("play", () => syncVideos(videoGroupA, "play"));-->
+<!--            video.addEventListener("pause", () => syncVideos(videoGroupA, "pause"));-->
+<!--        });-->
+
+<!--        videoGroupB.forEach(video => {-->
+<!--            video.addEventListener("play", () => syncVideos(videoGroupB, "play"));-->
+<!--            video.addEventListener("pause", () => syncVideos(videoGroupB, "pause"));-->
+<!--        });-->
+<!--        videoGroupH.forEach(video => {-->
+<!--            video.addEventListener("play", () => syncVideos(videoGroupH, "play"));-->
+<!--            video.addEventListener("pause", () => syncVideos(videoGroupH, "pause"));-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>
