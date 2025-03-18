@@ -98,7 +98,6 @@
                 <div style="position: relative; text-align: center;">
                     <img src="imgs/moti.png" class="img-fluid" alt="motivation">
 
-                    <!-- 透明的点击区域，跟随图片大小变化 -->
                     <div onclick="scrollToSection('binpicking-section')"
                          style="position: absolute; top: 0%; left: 0%; width: 30%; height: 100%; cursor: pointer;">
                     </div>
@@ -138,7 +137,6 @@
                 <p class="text-justify">The captured image is segmented by the foundation model SAM2<sup><a href="#ref7">[1]</a></sup>. to obtain the shape of the DLOs on the top layer, and then select an appropriate grasping point.</p>
             </div>
         </div>
-        <!-- 视频部分 -->
         <div class="col-md-6">
             <div class="card p-3 video-card">
                 <video id="videoA1" width="100%" playsinline muted loop autoplay class="rounded shadow">
@@ -159,7 +157,7 @@
                 <p>To handle possible entanglements, the motion is planned based on the contact status from force/torque sensor. A state-machine approach is deployed to detect grasping errors and react to them accordingly.</p>
             </div>
         </div>
-        <!-- 视频部分 -->
+
         <div class="col-md-6">
             <div class="card p-3 video-card">
                 <video id="videoB1" width="100%" playsinline muted loop autoplay class="rounded shadow">
@@ -183,7 +181,7 @@
                 <p class="mt-2 text-muted">Successful: the DLO is isolated from the pile and placed on the table.</p>
             </div>
         </div>
-        <!-- 视频部分 -->
+
         <div class="col-md-6">
             <div class="card p-3 video-card">
                 <video id="Bin picking result video" width="100%" playsinline muted loop autoplay class="rounded shadow">
