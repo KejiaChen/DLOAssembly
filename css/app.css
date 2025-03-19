@@ -180,8 +180,8 @@ pre.codegen {
 
 :root {
   --video-container-width: 100%; /* Default width of the video container */
-  --video1-width: 45%; /* Default width of the first video */
-  --video2-width: 55%; /* Default width of the second video */
+  --video1-width: 35%; /* Default width of the first video */
+  --video2-width: 65%; /* Default width of the second video */
 }
 
 .video-container-horizontal {
