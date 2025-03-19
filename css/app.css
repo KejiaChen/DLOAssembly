@@ -167,8 +167,8 @@ pre.codegen {
 }
 
 .video-container {
-  max-width: 1000px; /* Adjust width */
-  width: 80%; /* Make it responsive */
+  
+  width: 100%; /* Make it responsive */
   aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
   margin: 0 auto;
 }
@@ -178,35 +178,30 @@ pre.codegen {
   height: 100%;
 }
 
+:root {
+  --video-container-width: 100%; /* Default width of the video container */
+  --video1-width: 45%; /* Default width of the first video */
+  --video2-width: 55%; /* Default width of the second video */
+}
+
 .video-container-horizontal {
   display: flex; /* Align videos horizontally */
   justify-content: center; /* Center the videos */
   gap: 20px; /* Adds spacing between videos */
-  width: 100%; /* Ensures full width */
+  width: var(--video-container-width); /* Adjustable width */
 }
-
-/*
-.video-container-horizontal video {
-  width: 45%;
-  max-width: 500px;
-  height: auto;
-}
-*/
 
 .video-container-horizontal video {
   height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Keep rounded corners */
 }
 
-/* Specific width assignment */
 .video-container-horizontal video:first-child {
-  width: 35%; /* First video takes 35% */
-  /* max-width: 350px; */
+  width: var(--video1-width); /* Adjustable width for the first video */
 }
 
 .video-container-horizontal video:last-child {
-  width: 65%; /* Second video takes 55% */
-  /* max-width: 550px; */
+  width: var(--video2-width); /* Adjustable width for the second video */
 }
 
 /* Responsive adjustment for small screens */

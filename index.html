@@ -14,12 +14,20 @@
     <link rel="stylesheet" href="css/app.css">
 
     <style>
+        p {
+            font-size: 1.2rem;  /* Slightly larger text */
+            text-align: left;   /* Align paragraphs to the left */
+        }
+        video {
+            max-width: 100%;  /* Ensure videos do not exceed 100% width */
+        }
+    
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa;
         }
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2.0rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
             color: #2c3e50;
@@ -52,16 +60,35 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        .d-flex {
+            display: flex;
+        }
+        .justify-content-center {
+            justify-content: center;
+        }
+        .text-left {
+            text-align: left;
+        }
+        .video-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .video-card .d-flex {
+            width: 100%;
+        }
+        .spacer {
+            margin-top: 2rem; /* Adjust the value as needed */
+        }
     </style>
 </head>
 
 <body>
-    <div class="container" id="main">
-        <div class="row mt-4">
-            <h1 style="font-size: 36px; font-weight: bold; text-align: center;">
-                Multi-Robot Assembly of Deformable Linear Objects Using Multi-Modal Perception
-            </h1>
-        </div>
+<div class="container" id="main">
+    <div class="row mt-4">
+        <h2 class="col-md-12 text-center">
+            <b>Multi-Robot Assembly of Deformable Linear Objects<br>Using Multi-Modal Perception</b>
+        </h2>
     </div>
 
     <div class="text-center mt-4">
@@ -70,157 +97,151 @@
         </a>
     </div>
 
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <video id="v0" width="100%" preload="metadata" playsinline muted loop autoplay class="rounded shadow">
-                <source src="videos/iros2025_with_audio.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
+    </br>
     <div class="container-fluid">
         <div class="row justify-content-md-center">
             <div class="col-12">
+                <p class="text-center">
+                    <img src="imgs/moti.png" class="img-fluid" alt="motivation" style="max-width: 100%;">
+                </p>
                 <h3 class="mt-4 mb-2">Abstract</h3>
                 <p class="text-justify">
                     Industrial assembly of deformable linear objects (DLOs) such as cables offers great potential for many industries.
                     However, DLOs pose several challenges for robot-based automation due to the inherent complexity of deformation and, consequentially, the difficulties in anticipating the behavior of DLOs in dynamic situations.
-                    Although existing studies have addressed isolated subproblems like shape tracking, grasping, and shape control, there has been limited exploration of integrated workflows that combine these individual processes.
-
-                    To address this gap, we propose an object-centric perception and planning framework to achieve a comprehensive DLO assembly process throughout the industrial value chain.
-                    The framework utilizes visual and tactile information to track the DLO's shape as well as contact state across different stages, which facilitates effective planning of robot actions.
-                    Our approach encompasses robot-based bin picking of DLOs from cluttered environments, followed by a coordinated handover to two additional robots that mount the DLOs onto designated fixtures.
-                    Real-world experiments employing a setup with multiple robots demonstrate the effectiveness of the approach and its relevance to industrial scenarios
+                    Although existing studies have addressed isolated subproblems like shape tracking, grasping, and shape control, <b>there has been limited exploration of integrated workflows that combine these individual processes</b>.
                 </p>
-<!--                <p class="text-center">-->
-<!--                    <img src="imgs/moti.png" class="img-fluid" alt="motivation">-->
-<!--                </p>-->
-                <div style="position: relative; text-align: center;">
-                    <img src="imgs/moti.png" class="img-fluid" alt="motivation">
+                
+                <p class="text-justify">
+                    To address this gap, we propose an object-centric perception and planning framework to achieve <b>a comprehensive DLO assembly process</b> throughout the industrial value chain.
+                    The framework utilizes visual and tactile information to track the DLO's shape as well as contact state across different stages, which facilitates effective planning of robot actions.
+                    Our approach encompasses robot-based <b>bin picking</b> of DLOs from cluttered environments, followed by a coordinated <b>handover</b> to two additional robots that <b>mount</b> the DLOs onto designated fixtures.
+                    Real-world experiments employing a setup with multiple robots demonstrate the effectiveness of the approach and its relevance to industrial scenarios.
+                </p>
+
 
                     <div onclick="scrollToSection('binpicking-section')"
                          style="position: absolute; top: 0%; left: 0%; width: 30%; height: 100%; cursor: pointer;">
-                    </div>
+                
+                    <div onclick="scrollToSection('binpicking-section')"
+                         style="position: absolute; top: 0%; left: 0%; width: 30%; height: 100%; cursor: pointer;">
+            </div>
+        </div>
+    </div>
 
-                    <div onclick="scrollToSection('Tracking-and-Handover')"
-                         style="position: absolute; top: 0%; left: 45%; width: 20%; height: 70%; cursor: pointer;">
-                    </div>
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/_NrCSEh0r-c"
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen 
+            class="rounded shadow">
+        </iframe>
+    </div>
 
-                    <div onclick="scrollToSection('Full-Assembly-Process')"
-                         style="position: absolute; top: 0%; left: 65%; width: 25%; height: 100%; cursor: pointer;">
-                    </div>
+   
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    </br>
+    </br>
+    </br>
+    <div class="text-center mb-4">
+        <h1 class="section-title">1. Singulation (Bin-picking)</h1>
+        <p>Bin picking is performed on a densely packed set of DLOs, which requires instance segmentation and handling of possible entanglements.</p>
+        <img src="imgs/binpicking.png" class="img-fluid" alt="Bin picking" style="max-width: 100%;">
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card video-card p-3">
+                <h4>Local Visual Perception in Cluttered Scenes</h4>
+                <p>
+                    The captured image is segmented by the foundation model <a href="https://ai.meta.com/sam2/" target="_blank" rel="noopener noreferrer">SAM2</a> to obtain 
+                    the shape of the DLOs on the top layer, and then select an appropriate grasping point.
+                </p>
+    
+                <!-- Video section with flexbox properly applied -->
+            
+                <div class="video-container-horizontal">
+                    <video id="videoA1" playsinline muted loop autoplay class="rounded shadow">
+                        <source src="videos/bin_a_1.mp4" type="video/mp4">
+                    </video>
+                    <video id="videoA2" playsinline muted loop autoplay class="rounded shadow">
+                        <source src="videos/bin_a_2.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>      
+    
+    </br>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <h4 class="text-center">State Machine for Motion Planning</h4>
+                <p>To handle possible entanglements, the motion is planned based on the contact status from force/torque sensor. 
+                    A state-machine approach is deployed to detect grasping errors and react to them accordingly.
+                </p>
+                <div class="d-flex justify-content-center">
+                    <video id="videoB1" playsinline muted loop autoplay class="rounded shadow" style="max-width: 70%;">
+                        <source src="videos/bin_b_1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="d-flex justify-content-center">
+                <video id="videoB2" playsinline muted loop autoplay class="rounded shadow">
+                    <source src="videos/bin_b_2.mp4" type="video/mp4">
+                </video>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-3 video-card">
+                <h4 class="text-center"> Bin-picking Experiment Results</h4>
+                <p>The bin-picking experiment involves removing 31 high-voltage cables from a load carrier. The system demonstrates its reliability with an average success rate of 89.7%.</p>        
+                <div class="d-flex justify-content-center">
+                    <video id="videoB1" playsinline muted loop autoplay class="rounded shadow" style="max-width: 70%;">
+                        <source src="videos/binpicking_result.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img src="imgs/binpicking_result.png" class="img-fluid rounded shadow" alt="Results of bin picking experiments">
                 </div>
             </div>
         </div>
     </div>
-    </br>
-    </br>
-    </br>
-<!--    <div class="text-center mb-4">-->
-<!--        <h1 class="section-title">Singulation (Bin picking)</h1>-->
-<!--        <p>Bin picking is performed on a densely packed set of DLOs, which requires instance segmentation and handling of possible entanglements.</p>-->
-<!--        <img src="imgs/binpicking.png" class="img-fluid" alt="Bin picking">-->
-<!--    </div>-->
-    <div id="binpicking-section" class="text-center mb-4">
-        <h1 class="section-title">Singulation (Bin picking)</h1>
-        <p class="text-justify">Bin picking is performed on a densely packed set of DLOs, which requires instance segmentation and handling of possible entanglements.</p>
-        <img src="imgs/binpicking.png" class="img-fluid" alt="Bin picking">
-    </div>
 
-    </br>
-    </br>
-
-    <div class="row mt-4">
-        <div class="col-md-6 d-flex align-items-center">
-            <div>
-                <h3 class="text-center">a) Local Visual Perception in Cluttered Scenes</h3>
-                <p class="text-justify">The captured image is segmented by the foundation model SAM2<sup><a href="#ref7">[1]</a></sup>. to obtain the shape of the DLOs on the top layer, and then select an appropriate grasping point.</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card p-3 video-card">
-                <video id="videoA1" width="100%" playsinline muted loop autoplay class="rounded shadow">
-                    <source src="videos/bin_a_1.mp4" type="video/mp4">
-                </video>
-                <video id="videoA2" width="100%" playsinline muted loop autoplay class="rounded shadow mt-3">
-                    <source src="videos/bin_a_2.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-    </br>
-
-    <div class="row mt-4">
-        <div class="col-md-6 d-flex align-items-center">
-            <div>
-                <h3 class="text-center">b) State-Machine for Motion Planning</h3>
-                <p>To handle possible entanglements, the motion is planned based on the contact status from force/torque sensor. A state-machine approach is deployed to detect grasping errors and react to them accordingly.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card p-3 video-card">
-                <video id="videoB1" width="100%" playsinline muted loop autoplay class="rounded shadow">
-                    <source src="videos/bin_b_1.mp4" type="video/mp4">
-                </video>
-                <video id="videoB2" width="100%" playsinline muted loop autoplay class="rounded shadow">
-                    <source src="videos/bin_B_2.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-
-    </br>
-
-    <div class="row mt-4">
-        <div class="col-md-6 d-flex align-items-center">
-            <div>
-                <h3 class="subsection-title">Bin picking Experiment Results</h3>
-                <p class="text-justify">The bin-picking experiment involves removing 31 high-voltage cables from a load carrier. The system demonstrates its reliability with an average success rate of 89.7%.</p>
-                <img src="imgs/binpicking_result.png" class="img-fluid rounded shadow" alt="Results of bin picking experiments">
-                <p class="mt-2 text-muted">Successful: the DLO is isolated from the pile and placed on the table.</p>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card p-3 video-card">
-                <video id="Bin picking result video" width="100%" playsinline muted loop autoplay class="rounded shadow">
-                    <source src="videos/binpicking_result.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-
-
-
-    </br>
-    </br>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
     </br>
 
     <!-- Tracking and Handover Section -->
-<!--    <div class="text-center mb-4">-->
-<!--        <h1 class="section-title">Tracking and Handover</h1>-->
-<!--        <p>To monitor DLO’s 3D shape during the handover stage, the global shape estimated from RGB-D camera views are corrected by the grasping position obtained from ViTac sensing as well as proprioceptive information. The resulting 3D shape is later used to plan the grasping motion.</p>-->
-<!--        <img src="imgs/tracking&handover.png" class="img-fluid" alt="Tracking and Handover">-->
-<!--    </div>-->
-    <div id="Tracking-and-Handover" class="text-center mb-4">
-        <h1 class="section-title">Tracking and Handover</h1>
-        <p class="text-justify">To monitor DLO’s 3D shape during the handover stage, the global shape estimated from RGB-D camera views are corrected by the grasping position obtained from ViTac sensing as well as proprioceptive information. The resulting 3D shape is later used to plan the grasping motion.</p>
-        <img src="imgs/binpicking.png" class="img-fluid" alt="Tracking and Handover">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="text-center mb-4">
+                    <h1 class="section-title">2. Tracking and Handover</h1>
+                    <p class="text-justify">
+                        To monitor DLO’s 3D shape during the handover stage, the global shape estimated from RGB-D camera views is corrected by the grasping position obtained from ViTac sensing as well as proprioceptive information.
+                        The resulting 3D shape is later used to plan the grasping motion.
+                    </p>
+                    <img src="imgs/tracking&handover.png" class="img-fluid rounded shadow" alt="Tracking and Handover" style="max-width: 100%;">
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    </br>
 
     <div class="row mt-4">
         <!-- Tracking Correction -->
         <div class="col-md-6">
             <div class="card p-3 video-card">
                 <h3 class="text-center">Tracking Correction</h3>
-                <p class="text-justify">We compare the reconstructed shape with and without local correction. Across 10 trials, each consisting of 40 frames, the average adjustment from local correction with ViTac and proprioceptive information is 2.34 cm.</p>
-                <video id="videoT1" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">
-                    <source src="videos/tracking.mp4" type="video/mp4">
-                </video>
+                <p>We compare the reconstructed shape with and without local correction. Across 10 trials, each consisting of 40 frames, the average adjustment from local correction with ViTac and proprioceptive information is 2.34 cm.</p>
+                <div class="d-flex justify-content-center">
+                    <video id="videoT1" width="90%" playsinline muted loop autoplay class="rounded shadow mb-3">
+                        <source src="videos/tracking.mp4" type="video/mp4">
+                    </video>
+                </div>
 <!--                <video id="videoT2" width="100%" playsinline muted loop autoplay class="rounded shadow mb-3">-->
 <!--                    <source src="videos/track_wo_occ2.mp4" type="video/mp4">-->
 <!--                </video>-->
@@ -234,16 +255,16 @@
         <div class="col-md-6">
             <div class="card p-3 video-card">
                 <h3 class="text-center">Handover</h3>
-                <p class="text-justify">We run handover experiments for 32 trials across 4 different configurations, and record the gap between the resulting grasping point and the robot’s TCP.</p>
+                <p>We run handover experiments for 32 trials across 4 different configurations, and record the gap between the resulting grasping point and the robot’s TCP.</p>
                 <table>
                     <tr>
-                        <td style="width: 20%; text-align: center">
+                        <td style="width: 14%; text-align: center">
                             Grasping </br>distance
                         </td>
-                        <td style="width: 40%; text-align: center">
+                        <td style="width: 43%; text-align: center">
                             Ours
                         </td>
-                        <td td style="width: 40%; text-align: center">
+                        <td td style="width: 43%; text-align: center">
                             Vision only
                         </td>
                     </tr>
@@ -293,24 +314,25 @@
                         </td>
                     </tr>
                 </table>
-                <div class="text-center">
+                <p class="mt-2 text-muted">Local correction reduces the average grasping gap by 1.54 cm, and increases the handover success rate from 6.5% to 81.25%.</p>
+                <div class="d-flex justify-content-center">
                     <img src="imgs/handover.png" class="img-fluid rounded shadow" alt="Handover">
                 </div>
-                <p class="mt-2 text-muted">Local correction reduces the average grasping gap by 1.54 cm, and remarkably increases the handover success rate from 6.5% to 81.25%.</p>
             </div>
         </div>
     </div>
 
-    </br>
-    </br>
-    </br>
+</div>
+
+<div class="spacer"></div>
+<div class="spacer"></div>
+</br>
 
     <div id="Full-Assembly-Process" class="text-center mb-4">
         <div class="text-center mb-4">
-            <h1 class="section-title">Full Assembly Process</h1>
+            <h1 class="section-title">3. Full Assembly Process</h1>
             <p class="text-justify">Finally, we validate our framework within a real-world, comprehensive assembly process, where multiple robots collaboratively pick a target DLO, transport it to the mounting workspace and mount it on fixtures.
                 </p>
-        </div>
         <table>
             <td>
                 <div class="col-md-12">
@@ -322,17 +344,6 @@
         </table>
     </div>
 
-    <div id="references">
-        <h2>References</h2>
-        <ol>
-            <li id="ref1">N. Ravi, V. Gabeur, Y.-T. Hu, R. Hu, C. Ryali, T. Ma, H. Khedr,R. Radle, C. Rolland, L. Gustafson, E. Mintun, J. Pan, K. V. Alwala,N. Carion, C.-Y. Wu, R. Girshick, P. Dollar, and C. Feichtenhofer,“Sam 2: Segment anything in images and videos,” <i>arXiv preprintarXiv:2408.00714, 2024</i>.
-        </ol>
-    </div>
-<script>
-    function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>-->
 <!--<script>-->
 <!--    document.addEventListener("DOMContentLoaded", function() {-->
